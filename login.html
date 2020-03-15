@@ -19,7 +19,6 @@
 	<!-- 顶部超大屏幕 -->
 	<div class="jumbotron text-center" style="margin-bottom:0">
 		<h1>简单的Bootstrap 4响应式网页</h1>
-		<p>重置浏览器窗口大小查看效果！</p> 
 	</div>
 	
 	<!-- 折叠导航栏 -->
@@ -45,45 +44,17 @@
 
 	<!-- 主体内容 -->
 	<div class="container" style="margin-top:30px">
-		<!-- 网格 -->
-		<div class="row">
-			<div class="col-sm-4">
-				<h2>关于我</h2>
-				<h5>我的照片:</h5>
-				<div class="fakeimg">这边插入图像</div>
-				<p>关于我的介绍..</p>
-				<h3>一些链接</h3>
-				<p>说明文本</p>
-				<ul class="nav nav-pills flex-column">
-					<li class="nav-item">
-						<a class="nav-link active" href="#">激活状态</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">链接</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">链接</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link disabled" href="#">禁用</a>
-					</li>
-				</ul>
-				<hr class="d-sm-none">
+		<form>
+			<div class="form-group">
+				<label for="username">用户名:</label>
+				<input type="text" class="form-control" id="username">
 			</div>
-			<div class="col-sm-8">
-				<h2>标题</h2>
-				<h5>副标题</h5>
-				<div class="fakeimg">图像</div>
-				<p>一些文本..</p>
-				<p>菜鸟教程，学的不仅是技术，更是梦想！！！菜鸟教程，学的不仅是技术，更是梦想！！！菜鸟教程，学的不仅是技术，更是梦想！！！</p>
-				<br>
-				<h2>标题</h2>
-				<h5>副标题</h5>
-				<div class="fakeimg">图像</div>
-				<p>一些文本..</p>
-				<p>菜鸟教程，学的不仅是技术，更是梦想！！！菜鸟教程，学的不仅是技术，更是梦想！！！菜鸟教程，学的不仅是技术，更是梦想！！！</p>
+			<div class="form-group">
+				<label for="pwd">密码:</label>
+				<input type="password" class="form-control" id="pwd">
 			</div>
-		</div>
+			<button type="submit" class="btn btn-primary btn-block mb-3">登录</button>
+		</form>
 	</div>
 	
 	<!-- 底部超大屏幕 -->
