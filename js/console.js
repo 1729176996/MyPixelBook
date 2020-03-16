@@ -29,7 +29,7 @@ app.controller('myCtr1',function($scope,$http){
 		}).then(function(response){
 			$scope.names = response.data.sites;
 			if(response.data.code==200){
-				window.location.href = 'console.html';
+				$scope.alertMsg('登录成功');
 			}else{
 				$scope.alertMsg(response.data.msg);
 			}

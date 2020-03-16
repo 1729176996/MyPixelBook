@@ -7,10 +7,13 @@ app.controller('myCtr1',function($scope,$http){
 	$scope.init = function(){
 		$scope.username = '';//用户名
 		$scope.password = '';//密码
+		$scope.nick = '';//昵称
 	};
-	$scope.login = function(){
+	$scope.register = function(){
 		var username = $scope.username;
 		var password = $scope.password;
+		var repassword = $scope.repassword;
+		var nick = $scope.nick;
 		if(!username){
 			$scope.alertMsg('用户名不能为空');
 			return;
@@ -19,17 +22,30 @@ app.controller('myCtr1',function($scope,$http){
 			$scope.alertMsg('密码不能为空');
 			return;
 		}
+		if(!repassword){
+			$scope.alertMsg('密码验证不能为空');
+			return;
+		}
+		if(!(password===repassword)){
+			$scope.alertMsg('两次密码不一样');
+			return;
+		}
+		if(!nick){
+			$scope.alertMsg('昵称不能为空');
+			return;
+		}
 		var sendObj = {
 			username:username,
-			password:password
+			password:password,
+			nick:nick
 		};
 		$http({
 			method:'GET',
-			url:'http://localhost:8081/login?username='+username+'&password='+password
+			url:url+'/register?username='+username+'&password='+password+'&nick='+nick
 		}).then(function(response){
 			$scope.names = response.data.sites;
 			if(response.data.code==200){
-				$scope.alertMsg('登录成功');
+				$('#successAlert').modal('toggle');
 			}else{
 				$scope.alertMsg(response.data.msg);
 			}
@@ -38,6 +54,11 @@ app.controller('myCtr1',function($scope,$http){
 			$scope.alertMsg('网络失败');
 		});
 	};
+	//返回上一页
+	$scope.back = function(){
+		window.history.back(-1);
+	}
+	//提示框
 	$scope.alertMsg = function(msg){
 		$scope.msg = msg;
 		$('#alertMsg').modal('toggle');
