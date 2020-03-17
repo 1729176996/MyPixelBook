@@ -12,6 +12,8 @@ var multer  = require('multer');
 //用来操作文件
 var fs = require("fs");
 
+var url = 'http://localhost:8081';
+
 //使用npm安装mysql模块
 //npm install mysql
 var mysql = require('mysql');
@@ -37,9 +39,6 @@ var connectionObj = {
 app.get('/',function(req,res){
 	console.log("主页 GET 请求");
 	//res.send('Hello GET');
-	//res.sendFile('./public/index.html');
-	res.sendFile(__dirname + '/public/index.html');
-	//res.sendFile(path.join(__dirname, '../public', 'index.html'))
 })
 
 //  POST 请求
@@ -174,9 +173,9 @@ app.post('/file_upload', function (req, res) {
 					
 					if(err){
 						console.log( err );
-						res.redirect('https://1729176996.github.io/MyPixelBook/uploadFail.html');
+						res.redirect(url+'/public/uploadFail.html');
 					}else{
-						res.redirect('https://1729176996.github.io/MyPixelBook/uploadSuc.html');
+						res.redirect(url+'/public/uploadSuc.html');
 					}
 					
 				});
