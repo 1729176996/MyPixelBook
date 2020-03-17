@@ -44,7 +44,8 @@
 	app.controller('myCtr1',function($scope,$http){
 		//返回上一页
 		$scope.back = function(){
-			window.history.back(-1);
+			//返回上一页并刷新
+			window.location.href =document.referrer;
 		}
 	});
 </script>
