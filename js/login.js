@@ -7,6 +7,7 @@ app.controller('myCtr1',function($scope,$http){
 	$scope.init = function(){
 		$scope.username = '';//用户名
 		$scope.password = '';//密码
+		window.localStorage.removeItem('user');
 	};
 	$scope.login = function(){
 		var username = $scope.username;
@@ -19,10 +20,6 @@ app.controller('myCtr1',function($scope,$http){
 			weui.alert('密码不能为空');
 			return;
 		}
-		var sendObj = {
-			username:username,
-			password:password
-		};
 		$http({
 			method:'GET',
 			url:url+'/login?username='+username+'&password='+password

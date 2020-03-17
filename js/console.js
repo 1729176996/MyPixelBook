@@ -7,29 +7,53 @@ app.controller('myCtr1',function($scope,$http){
 	$scope.init = function(){
 		//用户信息
 		$scope.user = window.localStorage.getItem('user')?JSON.parse(window.localStorage.getItem('user')):{};
-	};
-	$scope.login = function(){
-		var username = $scope.username;
-		var password = $scope.password;
-		if(!username){
-			weui.alert('用户名不能为空');
+		$scope.list = [];
+		$scope.getList();
+	}
+	$scope.getList = function(){
+		if(!$scope.user.id){
+			weui.alert('没有用户信息，请登录',function(){
+				window.localStorage.removeItem('user');
+				window.location.href = 'console.html';
+			});
 			return;
 		}
-		if(!password){
-			weui.alert('密码不能为空');
-			return;
-		}
-		var sendObj = {
-			username:username,
-			password:password
-		};
+		
 		$http({
 			method:'GET',
-			url:url+'/login?username='+username+'&password='+password
+			url:url+'/getItems?user_id='+$scope.user.id
 		}).then(function(response){
-			$scope.names = response.data.sites;
+			//$scope.names = response.data.sites;
 			if(response.data.code==200){
-				weui.alert('登录成功');
+				$scope.list = response.data.data;
+			}else{
+				weui.alert(response.data.msg);
+			}
+		}, function(response){
+			// 请求失败执行代码
+			weui.alert('网络失败');
+		});
+	};
+	$scope.delete = function(item){
+		if(!$scope.user.id){
+			weui.alert('没有用户信息，请登录',function(){
+				window.localStorage.removeItem('user');
+				window.location.href = 'console.html';
+			});
+			return;
+		}
+		
+		$http({
+			method:'GET',
+			url:url+'/deleteItem?user_id='+item.user_id+'&item_id='+item.id
+		}).then(function(response){
+			//$scope.names = response.data.sites;
+			if(response.data.code==200){
+				//$scope.list = response.data.data;
+				weui.alert('删除成功',function(){
+					$scope.list = [];
+					$scope.getList();
+				});
 			}else{
 				weui.alert(response.data.msg);
 			}

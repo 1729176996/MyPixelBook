@@ -34,11 +34,6 @@ app.controller('myCtr1',function($scope,$http){
 			weui.alert('昵称不能为空');
 			return;
 		}
-		var sendObj = {
-			username:username,
-			password:password,
-			nick:nick
-		};
 		$http({
 			method:'GET',
 			url:url+'/register?username='+username+'&password='+password+'&nick='+nick
