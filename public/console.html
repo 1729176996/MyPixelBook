@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>像素书控制台</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.min.css">
+	<!-- 引入font-awesome图标样式 -->
+	<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="css/weui.min.css"/>
+	<script src="js/jquery.js"></script>
+	<script src="js/popper.js"></script>
+	<script src="./bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+	<!-- 引入angular的js -->
+	<script src="js/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/weui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/console.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body ng-app="app" ng-controller="myCtr1" ng-init="init()">
+	<!-- 顶部超大屏幕 -->
+	<div class="jumbotron text-center" style="margin-bottom:0">
+		<h1><i class="fa fa-book" aria-hidden="true"></i>像素书控制台<i class="fa fa-gamepad" aria-hidden="true"></i></h1>
+		<p><span class="text-primary">{{user.nick}}</span>,欢迎━(*｀∀´*)ノ亻!</p>
+	</div>
+	
+	<!-- 模态框 -->
+	<!-- 模态框（Modal）是覆盖在父窗体上的子窗体 -->
+	<!-- 目的是显示来自一个单独的源的内容，
+		 可以在不离开父窗体的情况下有一些互动 -->
+	<!-- 子窗体可提供信息交互等 -->
+	<!-- $(’#identifier’).modal(‘toggle’) 切换模态框状态 -->
+	<!-- $(’#identifier’).modal(‘show’) 显示模态框 -->
+	<!-- $(’#identifier’).modal(‘hide’) 隐藏模态框 -->
+	<div class="modal fade" id="addDialog">
+		<!-- 可以通过添加 .modal-sm 类来创建一个小模态框，
+			 .modal-lg 类可以创建一个大模态框 -->
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<!-- 模态框头部 -->
+				<div class="modal-header d-flex">
+					<div class="flex-grow-1">提示</div>
+					<i class="fa fa-window-close" aria-hidden="true" data-dismiss="modal"></i>
+				</div>
+				<!-- 模态框主体 -->
+				<div class="modal-body">
+					<form id="uploadForm" action="http://localhost:8081/file_upload" method="post" enctype="multipart/form-data">
+						<div class="input-group mb-3 input-group-sm">
+							<div class="input-group-prepend">
+								<label class="input-group-text" for="descstr">描述</label>
+							</div>
+							<input type="hidden" name="userid" value="{{user.id}}" />
+							<input type="text" class="form-control" placeholder="描述" name="descstr" id="descstr">
+						</div>
+						<div class="custom-file">
+							<input type="file" class="custom-file-input" name="image" id="customFile">
+							<label class="custom-file-label" for="customFile">选择文件</label>
+						</div>
+						<div class="form-group">
+							<label for="desc">描述</label>
+						</div>
+						<button type="submit" class="btn btn-primary btn-block">添加</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 主体内容 -->
+	<div class="container" style="margin-top:30px">
+		<!-- 按钮：用于打开模态框 -->
+		<button type="button" class="btn btn-primary btn-block mb-3" data-toggle="modal" data-target="#addDialog">
+			<i class="fa fa-plus" aria-hidden="true"></i> 添加
+		</button>
+		<div class="row" ng-repeat="item in list">
+			<div class="col">
+				<img src="upload/{{item.filename}}" class="img-fluid" alt="item">
+			</div>
+			<div class="col">{{item.descstr}}</div>
+			<div class="col"><button type="button" class="btn btn-primary mb-1" ng-click="delete(item)">删除</button></div>
+		</div>
+	</div>
+	
+	<!-- 底部超大屏幕 -->
+	<div class="jumbotron text-center" style="margin-bottom:0">
+		<p>Made in China</p>
+	</div>
+
+</body>
+</html>
