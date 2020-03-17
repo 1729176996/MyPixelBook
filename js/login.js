@@ -12,11 +12,11 @@ app.controller('myCtr1',function($scope,$http){
 		var username = $scope.username;
 		var password = $scope.password;
 		if(!username){
-			$scope.alertMsg('用户名不能为空');
+			weui.alert('用户名不能为空');
 			return;
 		}
 		if(!password){
-			$scope.alertMsg('密码不能为空');
+			weui.alert('密码不能为空');
 			return;
 		}
 		var sendObj = {
@@ -27,41 +27,19 @@ app.controller('myCtr1',function($scope,$http){
 			method:'GET',
 			url:url+'/login?username='+username+'&password='+password
 		}).then(function(response){
-			$scope.names = response.data.sites;
 			if(response.data.code==200){
+				window.localStorage.setItem('user',JSON.stringify(response.data.data[0]))
 				window.location.href = 'console.html';
 			}else{
-				$scope.alertMsg(response.data.msg);
+				weui.alert(response.data.msg);
 			}
 		}, function(response){
 			// 请求失败执行代码
-			$scope.alertMsg('网络失败');
+			weui.alert('网络失败');
 		});
 	};
 	//注册
 	$scope.register = function(){
 		window.location.href = 'register.html';
 	}
-	//提示框
-	$scope.alertMsg = function(msg){
-		$scope.msg = msg;
-		$('#alertMsg').modal('toggle');
-	}
-	
-	/**
-	 * 垂直居中模态框 
-	 **/
-	function centerModals() { 
-		$('.modal').each(function(i) { 
-			var $clone = $(this).clone().css('display', 'block').appendTo('body'); 
-			var top = Math.round(($clone.height() - $clone.find('.modal-content').height()) / 2); 
-			top = top > 50 ? top : 0; 
-			$clone.remove(); 
-			$(this).find('.modal-content').css("margin-top", top - 50); 
-		}); 
-	} 
-	// 在模态框出现的时候调用垂直居中方法 
-	$('.modal').on('show.bs.modal', centerModals); 
-	// 在窗口大小改变的时候调用垂直居中方法 
-	$(window).on('resize', centerModals);
 });

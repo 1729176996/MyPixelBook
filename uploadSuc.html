@@ -14,8 +14,6 @@
 	<!-- 引入angular的js -->
 	<script src="js/angular.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/weui.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/register.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body ng-app="app" ng-controller="myCtr1" ng-init="init()">
 	<!-- 导航 -->
@@ -29,25 +27,7 @@
 	
 	<!-- 主体内容 -->
 	<div class="container" style="margin-top:30px">
-		<form>
-			<div class="form-group">
-				<label for="username"><i class="fa fa-user" aria-hidden="true"></i>用户名:</label>
-				<input type="text" class="form-control" id="username" ng-model="username">
-			</div>
-			<div class="form-group">
-				<label for="nick"><i class="fa fa-user" aria-hidden="true"></i>昵称:</label>
-				<input type="text" class="form-control" id="nick" ng-model="nick">
-			</div>
-			<div class="form-group">
-				<label for="password"><i class="fa fa-key" aria-hidden="true"></i>密码:</label>
-				<input type="password" class="form-control" id="password" ng-model="password">
-			</div>
-			<div class="form-group">
-				<label for="repassword"><i class="fa fa-key" aria-hidden="true"></i>密码验证:</label>
-				<input type="password" class="form-control" id="repassword" ng-model="repassword">
-			</div>
-			<button type="button" class="btn btn-primary btn-block mb-3" ng-click="register()"><i class="fa fa-user-plus" aria-hidden="true"></i> 注册</button>
-		</form>
+		上传成功
 	</div>
 	
 	<!-- 底部超大屏幕 -->
@@ -56,4 +36,16 @@
 	</div>
 
 </body>
+<script type="text/javascript">
+	//通过 AngularJS 的 angular.module 函数来创建模块
+	var app = angular.module('app',[]);
+	//使用 ng-controller 指令来添加应用的控制器
+	//在页面上使用ng-controller 指令指定控制器名字
+	app.controller('myCtr1',function($scope,$http){
+		//返回上一页
+		$scope.back = function(){
+			window.history.back(-1);
+		}
+	});
+</script>
 </html>

@@ -7,11 +7,13 @@
 	<link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.min.css">
 	<!-- 引入font-awesome图标样式 -->
 	<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="css/weui.min.css"/>
 	<script src="js/jquery.js"></script>
 	<script src="js/popper.js"></script>
 	<script src="./bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
 	<!-- 引入angular的js -->
 	<script src="js/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/weui.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/login.js" type="text/javascript" charset="utf-8"></script>
 </head>
@@ -19,32 +21,6 @@
 	<!-- 顶部超大屏幕 -->
 	<div class="jumbotron text-center" style="margin-bottom:0">
 		<h1><i class="fa fa-book" aria-hidden="true"></i>像素书控制台<i class="fa fa-gamepad" aria-hidden="true"></i></h1>
-	</div>
-	
-	<!-- 模态框 -->
-	<!-- 模态框（Modal）是覆盖在父窗体上的子窗体 -->
-	<!-- 目的是显示来自一个单独的源的内容，
-		 可以在不离开父窗体的情况下有一些互动 -->
-	<!-- 子窗体可提供信息交互等 -->
-	<!-- $(’#identifier’).modal(‘toggle’) 切换模态框状态 -->
-	<!-- $(’#identifier’).modal(‘show’) 显示模态框 -->
-	<!-- $(’#identifier’).modal(‘hide’) 隐藏模态框 -->
-	<div class="modal fade" id="alertMsg">
-		<!-- 可以通过添加 .modal-sm 类来创建一个小模态框，
-			 .modal-lg 类可以创建一个大模态框 -->
-		<div class="modal-dialog modal-sm">
-			<div class="modal-content">
-				<!-- 模态框头部 -->
-				<div class="modal-header d-flex">
-					<div class="flex-grow-1">提示</div>
-					<i class="fa fa-window-close" aria-hidden="true" data-dismiss="modal"></i>
-				</div>
-				<!-- 模态框主体 -->
-				<div class="modal-body">
-					{{msg}}
-				</div>
-			</div>
-		</div>
 	</div>
 	
 	<!-- 主体内容 -->
@@ -58,8 +34,8 @@
 				<label for="password"><i class="fa fa-key" aria-hidden="true"></i>密码:</label>
 				<input type="password" class="form-control" id="password" ng-model="password">
 			</div>
-			<button type="submit" class="btn btn-primary btn-block mb-3" ng-click="login()"><i class="fa fa-sign-in" aria-hidden="true"></i> 登录</button>
-			<button type="submit" class="btn btn-primary btn-block mb-3" ng-click="register()"><i class="fa fa-user-plus" aria-hidden="true"></i> 注册</button>
+			<button type="button" class="btn btn-primary btn-block mb-3" ng-click="login()"><i class="fa fa-sign-in" aria-hidden="true"></i> 登录</button>
+			<button type="button" class="btn btn-primary btn-block mb-3" ng-click="register()"><i class="fa fa-user-plus" aria-hidden="true"></i> 注册</button>
 		</form>
 	</div>
 	

@@ -5,18 +5,18 @@ var app = angular.module('app',[]);
 app.controller('myCtr1',function($scope,$http){
 	//初始化方法，页面上用ng-init来调用这个方法
 	$scope.init = function(){
-		$scope.username = '';//用户名
-		$scope.password = '';//密码
+		//用户信息
+		$scope.user = window.localStorage.getItem('user')?JSON.parse(window.localStorage.getItem('user')):{};
 	};
 	$scope.login = function(){
 		var username = $scope.username;
 		var password = $scope.password;
 		if(!username){
-			$scope.alertMsg('用户名不能为空');
+			weui.alert('用户名不能为空');
 			return;
 		}
 		if(!password){
-			$scope.alertMsg('密码不能为空');
+			weui.alert('密码不能为空');
 			return;
 		}
 		var sendObj = {
@@ -29,23 +29,23 @@ app.controller('myCtr1',function($scope,$http){
 		}).then(function(response){
 			$scope.names = response.data.sites;
 			if(response.data.code==200){
-				$scope.alertMsg('登录成功');
+				weui.alert('登录成功');
 			}else{
-				$scope.alertMsg(response.data.msg);
+				weui.alert(response.data.msg);
 			}
 		}, function(response){
 			// 请求失败执行代码
-			$scope.alertMsg('网络失败');
+			weui.alert('网络失败');
 		});
 	};
-	//注册
-	$scope.register = function(){
-		window.location.href = 'register.html';
-	}
-	//提示框
-	$scope.alertMsg = function(msg){
-		$scope.msg = msg;
-		$('#alertMsg').modal('toggle');
+	//上传
+	$scope.upload = function(){
+		$('#uploadForm').form('submit', {
+			url:'http://localhost:8081/file_upload',
+			success: function(data) {
+				console.log(data);
+			}
+		});
 	}
 	
 	/**
