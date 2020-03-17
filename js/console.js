@@ -7,7 +7,6 @@ app.controller('myCtr1',function($scope,$http){
 	$scope.init = function(){
 		//用户信息
 		$scope.user = window.localStorage.getItem('user')?JSON.parse(window.localStorage.getItem('user')):{};
-		$scope.list = [];
 		$scope.getList();
 	}
 	$scope.getList = function(){
@@ -19,9 +18,10 @@ app.controller('myCtr1',function($scope,$http){
 			return;
 		}
 		
+		$scope.list = [];
 		$http({
 			method:'GET',
-			url:url+'/getItems?user_id='+$scope.user.id
+			url:url+'/getItemsById?user_id='+$scope.user.id
 		}).then(function(response){
 			//$scope.names = response.data.sites;
 			if(response.data.code==200){
