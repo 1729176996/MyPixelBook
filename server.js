@@ -39,12 +39,26 @@ var connectionObj = {
 app.get('/',function(req,res){
 	console.log("主页 GET 请求");
 	//res.send('Hello GET');
+	res.redirect(url+'/public/index.html');
 })
 
 //  POST 请求
 app.post('/',function(req,res){
 	console.log("主页 POST 请求");
 	//res.send('Hello POST');
+	res.redirect(url+'/public/index.html');
+})
+
+//  主页输出 "Hello World"
+app.get('/console',function(req,res){
+	console.log("控制台 GET 请求");
+	//res.send('Hello GET');
+	res.redirect(url+'/public/login.html');
+})
+app.post('/console',function(req,res){
+	console.log("控制台 POST 请求");
+	//res.send('Hello GET');
+	res.redirect(url+'/public/login.html');
 })
 
 //  注册

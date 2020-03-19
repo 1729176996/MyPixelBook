@@ -34,7 +34,7 @@ app.controller('myCtr1',function($scope,$http){
 			weui.alert('网络失败');
 		});
 	};
-	$scope.delete = function(item){
+	$scope.deleteItem = function(item){
 		if(!$scope.user.id){
 			weui.alert('没有用户信息，请登录',function(){
 				window.localStorage.removeItem('user');

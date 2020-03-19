@@ -72,18 +72,18 @@
 		<button type="button" class="btn btn-primary btn-block mb-3" data-toggle="modal" data-target="#addDialog">
 			<i class="fa fa-plus" aria-hidden="true"></i> 添加
 		</button>
-		<div class="row" ng-repeat="item in list">
+		<div class="row mb-3 clearfix" ng-repeat="item in list">
 			<div class="col">
 				<img src="upload/{{item.filename}}" class="img-fluid" alt="item">
 			</div>
-			<div class="col">{{item.descstr}}</div>
-			<div class="col"><button type="button" class="btn btn-primary mb-1" ng-click="delete(item)">删除</button></div>
+			<div class="col bg-light">{{item.descstr}}</div>
+			<div class="col"><button type="button" class="btn btn-primary mb-1 float-right" ng-click="deleteItem(item)">删除</button></div>
 		</div>
 	</div>
 	
 	<!-- 底部超大屏幕 -->
 	<div class="jumbotron text-center" style="margin-bottom:0">
-		<p>Made in China</p>
+		<p>Made By LYQ</p>
 	</div>
 
 </body>

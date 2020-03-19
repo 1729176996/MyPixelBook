@@ -16,6 +16,12 @@
 	<script src="js/weui.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+	<style type="text/css">
+		.pixelImg{
+			width: auto;
+			height: 200px;
+		}
+	</style>
 </head>
 <body ng-app="app" ng-controller="myCtr1" ng-init="init()">
 	<!-- 顶部超大屏幕 -->
@@ -27,17 +33,19 @@
 	
 	<!-- 主体内容 -->
 	<div class="container" style="margin-top:30px">
-		<div class="row" ng-repeat="item in list">
+		<div class="row mb-3" ng-repeat="item in list">
 			<div class="col">
-				<img src="upload/{{item.filename}}" class="img-fluid" alt="item">
+				<div class="border" style="text-align: center;">
+					<img src="upload/{{item.filename}}" class="pixelImg" title="{{item.descstr}}" alt="{{item.descstr}}">
+				</div>
+				<div class="bg-dark text-white" ng-if="item&&item.descstr">{{item.descstr}}</div>
 			</div>
-			<div class="col">{{item.descstr}}</div>
 		</div>
 	</div>
 	
 	<!-- 底部超大屏幕 -->
 	<div class="jumbotron text-center" style="margin-bottom:0">
-		<p>Made in China</p>
+		<p>Made By LYQ</p>
 	</div>
 
 </body>
